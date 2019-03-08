@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>trains</title>
+
+ 
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- LINK TO FIREBASE GOES HERE -->
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+ 
+ 
+  <!--Necessary javascript for BootStrap-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <!--CSS Link-->
+  <link rel = "stylesheet" href = "style.css">
+</head>
+
+<!-- element IDs to use:: -->
+<!-- submit button: #addperson -->
+<!-- name input: #nameinput -->
+<!-- rate input: #rateinput -->
+<!-- start date input #dateinput -->
+
+<body>
+
+<div class="container main">
+
+  <br>
+
+  <!-- Jumbotron -->
+  <!-- <div class="jumbotron"> -->
+    <div class = "well-sm jumbotron text center">
+    <h1 class="title"><strong>Trusty Tinas Train Tracker</strong></h1>
+    <br>
+    <p class="lead"><strong>Trusted Tremendous Train Tracking  </strong></p>
+    <h1 class = "timeCurrent text-center"></h1>
+  </div>
+
+  <!--table-->
+  <!-- <div class="container main"> -->
+    <div class="row">
+    <div class = "column-sm-1">
+    <div class = "col-sm-3 sidenav alert trainForm well-sm">
+      <h3 class="alert-header text left">Add Train</h3>
+
+      <form role = "form">
+        <div class = "form-group">
+          <label for = "trainNameId">Train Name:</label> <input class="form-control"id="trainNameId" onfocus="this.value=' '" type="text">
+          </div><br>
+
+          <div class = "form-group">
+            <label for="destinationId">Destination:</label><input class="form-control"id="destinationId" onfocus="this.value=' '" type="text">
+          </div><br>
+
+          <div class="form-group firstTrainTimeId">
+          <label for="start-date-input">First Train Time:</label>
+          <input class = "form-control" id="firstTrainTimeId" onfocus="this.value=''" placeholder="24:00 format (HH:mm)" type="text">
+        </div><br>
+
+        <div class="form-group">
+          <label for=frequencyId>Frequency(min)</label> <input class="form-control" id="frequencyId" onfocus="this.value=' '" placeholder="minutes" type="text">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary btn-sm" id="submit" type="submit">Submit</button>
+        </div>
+      </form>
+      </div>
+
+      <div class="col-sm-7 alert trainSchedule well-sm">
+        <h3 class="text-right">Rail Schedule</h3>
+ <hr>       <table class="table">
+            <thead>
+              <tr>
+                <th>Train Name</th>
+                <th>Destination</th>
+                <th>Frequency</th>
+                <th>Next Arrival</th>
+                <th>Minutes Away</th>
+              </tr>
+            </thead>
+            <tbody id="train-data">
+            </tbody>
+        </table>
+      </div>
+
+      <div class="col-sm-1"></div>
+  </div>
+  </div>
+
+<script src='logic.js'></script>
+</body>
+</html>
+
+
+
+
+<!-- 
+  belongs to line 53
+
+</form> -->

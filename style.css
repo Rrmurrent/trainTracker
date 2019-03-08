@@ -1,0 +1,32 @@
+table {
+    border: 1px solid black;
+    column-width: 200px;
+}
+table td {
+    border-left: 1px solid black;
+    width: 200px;
+}
+table tr {
+    border-bottom: 1px solid black;
+}
+
+.jumbotron{
+    background-color: black;
+    color:white;
+    font-style: bold;
+}
+    
+.card-body{
+    border:2px solid black;
+    }
+
+#addPerson{
+    border:2px solid black;  
+    }
+.card-header{
+    border:2px solid black;
+}
+
+.table-responsive{
+    border:2px solid black;
+}
