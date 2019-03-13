@@ -1,5 +1,4 @@
-alert("testing");
-
+// alert("testing");
 
   // Initialize Firebase
   var config = {
@@ -11,66 +10,127 @@ alert("testing");
     messagingSenderId: "1039862681593"
   };
   firebase.initializeApp(config);
+
 // creating variable to reference firebase database
   var database = firebase.database();
+
+  var trains = [];
 
   // get and display current time using moment.js
 var currentTime = moment().format("h:mm A");
 console.log("Current Time 1: " + currentTime);
 
-// $(document).ready(() => {
-//     $("#addperson").on("click", () => {
-//         $("#people").append(
-//             $("<tr>")
-//                 .append(
-//                     $("<td>").text("name"),
-//                     $("<td>").text("salary"),
-//                     $("<td>").text("starting date"),
-//                     $("<td>").text("lifetime earnings")
-//                 )
-//         );
-//     });
+// adding a new train
+$("#addTrain").on("click", () => {
+event.preventDefault();
+// Grab values from HTML input
+    trainName = $('#trainNameId').val().trim();
+    destination = $('#destinationId').val().trim(); 
+    trainTime = $('#firstTrainTimeId').val().trim();
+    frequency = $('#frequencyId').val().trim();
+
+    console.log("Name: " + trainName);
+  console.log("Destination: " + destination);
+  console.log("Time: " + trainTime);
+  console.log("Frequency: " + frequency + ' ' + 'minutes');
+
+  //  pushing data to firebase
+  database.ref().push({
+    trainName: trainName,
+    destination: destination,
+    trainTime: trainTime,
+    frequency: frequency,
+    timeAdded: firebase.database.ServerValue.TIMESTAMP
+  });
+
+});
+
+database.ref().on('child_added', (newchild)=> {
+  var trains = new train(newchild.val().trainName, newchild.val().destination, newchild.val().trainTime, newchild.val().frequency);
+  trains.push(train);
+
+
+  // add to table
+  $("#train-data").append(
+      $("<tr>")
+          .append(
+              $("<td>").text(train.name),
+              $("<td>").text(train.destination),
+              $("<td>").text(train.trainTime),
+              $("<td>").text(train.frequency)
+          )
+  );
+});
+
+
+//on click for the submit button
+// $("#submit").on("click", function() {
+    
+
+  
+
+   
+  
+
+  
+//     $("input").val('');
+//     return false;
+// });
+
+// reference to the database
+// database.ref().on("child_added", function(childSnapshot) {
+//   var trainName = childSnapshot.val().trainName;
+//   var destination = childsnapshot.val().destination;
+//   var trainTime = childsnapshot.val().trainTime;
+//   var frequency = childSnapshot.val().frequency;
+
+  // conversions for train times
+//   var frequency = parseInt(frequency);
+//   var currentTime = moment().format('h:mm A');
+//   console.log("Current Time: " + moment().format('HH:mm'));
+//   var dateConvert = moment(childSnapshot.val().trainTime, 'HH:mm').subtract(1, 'years');
+//   console.log("Date Conversion: " + dateConvert);
+//   var trainTime = moment(dateConvert).format('HH:mm');
+//   console.log("First train Time : " + trainTime);
+  
+//   var tConverted = moment(trainTime, 'HH:mm').subtract(1, 'years');
+//   var tDifference = moment().diff(moment(tConverted),  'minutes');
+//   var tRemainder = tDifference % frequency;
+//   console.log("Remainder: " + tRemainder);
+//   var minutesRemain = frequency - tRemainder;
+//   console.log("Min. remaining: " + minutesremain);
+//   var nextArrival = moment().add(minutesRemain, 'minutes');
+//   console.log("Next Train: " + moment(nextArrival).format('HH:mm A'));
+
+//   // Update html with the train data obtained above
+
+//   $('.timeCurrent').text("Current Time: " + currentTime + " (CST)");
+//   $('#train-data').append(
+//     "<tr><td id='trainNameDisplay'>" + childSnapshot.val().trainName+
+//     "</td><td id='trainDestinationDisplay'>" + childSnapshot.val().destination +
+//     "</td><td id='trainFrequencyDisplay'>" + 'Every ' + childSnapshot.val().frequency + ' min' +
+//     "</td><td id='trainNextDisplay'>" + moment(nextArrival).format("h:mm A") +
+//     "</td><td id='trainMinutesDisplay'>" + minutesRemain  + ' min' + "</td></tr>");
+
+// },
+
+// function(errorObject){
+//   console.log("Read failed: " + errorObject.code)
 // });
 
 
-// $("#add-user").on("click", function(event) {
-//     // Don't refresh the page!
-//     event.preventDefault();
 
-//     // YOUR TASK!!!
-//     // Code in the logic for storing and retrieving the most recent user.
-//     // Don't forget to provide initial data to your Firebase database.
-//     name = $("#nameInput").val().trim();
-//     rate= $("#rateInput").val().trim();
-//     startDate = $("#dateInput").val().trim();
-//     submitButton = $("#addperson").val().trim();
+// $(document).ready(() => {
 
-//     database.ref().push({
-//       name: name,
-//       rate: rate,
-//       startDate: startDate,
-//       role: role,
-      
-//     });
 
-//   });
 
-//   database.ref().on("childAdded", function(snapshot) {
+  //  Change the HTML to reflect
+    $("#nameInput").text(snapshot.val().name);
+    $("#rateInput").text(snapshot.val().rate);
+    $("#dateInput").text(snapshot.val().startDate);
+    $("#addPerson").text(snapshot.val().submitButton);
+    $("#roleInput").text(snapshop.val().role);
+  
 
-//     // Log everything that's coming out of snapshot
-//     console.log(snapshot.val().name);
-//     console.log(snapshot.val().rate);
-//     console.log(snapshot.val().starDate);
-//     console.log(snapshot.val().submitButton);
-//     console.log(snapshot.val().role);
-
-//     // Change the HTML to reflect
-//     $("#nameInput").text(snapshot.val().name);
-//     $("#rateInput").text(snapshot.val().rate);
-//     $("#dateInput").text(snapshot.val().startDate);
-//     $("#addPerson").text(snapshot.val().submitButton);
-//     $("#roleInput").text(snapshop.val().role);
-//   });
-
-//   $('.timeCurrent').text("Current Time: " + currentTime + " (CST)");
+  $('.timeCurrent').text("Current Time: " + currentTime + " (CST)");
   
