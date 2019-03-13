@@ -1,66 +1,151 @@
-// alert("testing");
+class train {
+  constructor (name, destination, arrival, frequency, distance) {
+    this.name = name;
+    this.destination = destination;
+    this.arrival = arrival;
+    this.frequency = frequency;
+    this.distance = distance;
+  }
+}
 
-  // Initialize Firebase
+
+$(document).ready(()=> {
+  // setting up the database
+  // initializing Firebase
+  
+
   var config = {
     apiKey: "AIzaSyCnjieYcp6j8CO5zqe3PMgpbV-TsBjK2cM",
-    authDomain: "traintracker-56f7d.firebaseapp.com",
-    databaseURL: "https://traintracker-56f7d.firebaseio.com",
-    projectId: "traintracker-56f7d",
-    storageBucket: "traintracker-56f7d.appspot.com",
-    messagingSenderId: "1039862681593"
+      authDomain: "traintracker-56f7d.firebaseapp.com",
+      databaseURL: "https://traintracker-56f7d.firebaseio.com",
+      projectId: "traintracker-56f7d",
+      storageBucket: "traintracker-56f7d.appspot.com",
+      messagingSenderId: "1039862681593"
   };
   firebase.initializeApp(config);
-
-// creating variable to reference firebase database
+  
   var database = firebase.database();
 
   var trains = [];
 
-  // get and display current time using moment.js
-var currentTime = moment().format("h:mm A");
-console.log("Current Time 1: " + currentTime);
+  // adding new train
+  $("#addTrain").on("click", () => {
+    // keeping the page from being refreshed
+    event.preventDefault();
 
-// adding a new train
-$("#addTrain").on("click", () => {
-event.preventDefault();
-// Grab values from HTML input
-    trainName = $('#trainNameId').val().trim();
-    destination = $('#destinationId').val().trim(); 
-    trainTime = $('#firstTrainTimeId').val().trim();
-    frequency = $('#frequencyId').val().trim();
+    // storing and retrieving the most refcent train input
+    name = $("#nameInput").val().trim();
+    destination = $("#destinationInput").val().trim();
+    arrival = $("#arrivalInput").val().trim();
+    frequency = $("#frequencyInput").val().trim();
+    distance = $("#distanceInput").val().trim();
 
-    console.log("Name: " + trainName);
-  console.log("Destination: " + destination);
-  console.log("Time: " + trainTime);
-  console.log("Frequency: " + frequency + ' ' + 'minutes');
+    console.log("Name: " + name);
+    console.log("Destination: " + destination);
+    console.log("Time: " + arrival);
+    console.log("Frequency: " + frequency + ' ' + 'minutes');
 
-  //  pushing data to firebase
-  database.ref().push({
-    trainName: trainName,
-    destination: destination,
-    trainTime: trainTime,
-    frequency: frequency,
-    timeAdded: firebase.database.ServerValue.TIMESTAMP
+    database.ref().push({
+      name: name,
+      destination: destination,
+      arrival: arrival,
+      frequency: frequency,
+      distance: distance,
+      dateAdded: firebase.database.ServerValue.TIMESTAMP
+    });
   });
 
-});
+  database.ref().on('child_added', (newchild)=> {
+    var train = new train(newchild.val().name, newchild.val().role, newchild.val().rate, newchild.val().start);
+    trains.push(train);
 
-database.ref().on('child_added', (newchild)=> {
-  var trains = new train(newchild.val().trainName, newchild.val().destination, newchild.val().trainTime, newchild.val().frequency);
-  trains.push(train);
+    var currentTime = moment().format("h:mm A");
+    console.log("Current Time 1: " + currentTime);
 
-
-  // add to table
-  $("#train-data").append(
+    // add to table
+    $("#train-table").append(
       $("<tr>")
           .append(
               $("<td>").text(train.name),
               $("<td>").text(train.destination),
-              $("<td>").text(train.trainTime),
-              $("<td>").text(train.frequency)
+              $("<td>").text(train.arrival),
+              $("<td>").text(train.frequency),
+              $("<td>").text(train.distance)
           )
   );
-});
+
+  })
+})
+
+
+
+
+
+
+
+// alert("testing");
+
+  // Initialize Firebase
+  // var config = {
+  //   apiKey: "AIzaSyCnjieYcp6j8CO5zqe3PMgpbV-TsBjK2cM",
+  //   authDomain: "traintracker-56f7d.firebaseapp.com",
+  //   databaseURL: "https://traintracker-56f7d.firebaseio.com",
+  //   projectId: "traintracker-56f7d",
+  //   storageBucket: "traintracker-56f7d.appspot.com",
+  //   messagingSenderId: "1039862681593"
+  // };
+  // firebase.initializeApp(config);
+
+// creating variable to reference firebase database
+  // var database = firebase.database();
+
+  // var trains = [];
+
+  // get and display current time using moment.js
+// var currentTime = moment().format("h:mm A");
+// console.log("Current Time 1: " + currentTime);
+
+// adding a new train
+// $("#addTrain").on("click", () => {
+// event.preventDefault();
+// Grab values from HTML input
+  //   trainName = $('#trainNameId').val().trim();
+  //   destination = $('#destinationId').val().trim(); 
+  //   trainTime = $('#firstTrainTimeId').val().trim();
+  //   frequency = $('#frequencyId').val().trim();
+
+  //   console.log("Name: " + trainName);
+  // console.log("Destination: " + destination);
+  // console.log("Time: " + trainTime);
+  // console.log("Frequency: " + frequency + ' ' + 'minutes');
+
+  //  pushing data to firebase
+//   database.ref().push({
+//     trainName: trainName,
+//     destination: destination,
+//     trainTime: trainTime,
+//     frequency: frequency,
+//     timeAdded: firebase.database.ServerValue.TIMESTAMP
+//   });
+
+// });
+
+// database.ref().on('child_added', (newchild)=> {
+//   var trains = new train(newchild.val().trainName, newchild.val().destination, newchild.val().trainTime, newchild.val().frequency);
+//   trains.push(train);
+
+
+  // add to table
+//   $("#train-data").append(
+//       $("<tr>")
+//           .append(
+//               $("<td>").text(train.name),
+//               $("<td>").text(train.destination),
+//               $("<td>").text(train.trainTime),
+//               $("<td>").text(train.frequency)
+//           )
+//   );
+// });
 
 
 //on click for the submit button
@@ -125,12 +210,12 @@ database.ref().on('child_added', (newchild)=> {
 
 
   //  Change the HTML to reflect
-    $("#nameInput").text(snapshot.val().name);
-    $("#rateInput").text(snapshot.val().rate);
-    $("#dateInput").text(snapshot.val().startDate);
-    $("#addPerson").text(snapshot.val().submitButton);
-    $("#roleInput").text(snapshop.val().role);
+  //   $("#nameInput").text(snapshot.val().name);
+  //   $("#rateInput").text(snapshot.val().rate);
+  //   $("#dateInput").text(snapshot.val().startDate);
+  //   $("#addPerson").text(snapshot.val().submitButton);
+  //   $("#roleInput").text(snapshop.val().role);
   
 
-  $('.timeCurrent').text("Current Time: " + currentTime + " (CST)");
+  // $('.timeCurrent').text("Current Time: " + currentTime + " (CST)");
   
