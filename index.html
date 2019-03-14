@@ -1,112 +1,91 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<html lang='en'>
 
 <head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
 
-  <meta charset="UTF-8">
-  <title>trains</title>
+    <title>Train Scheduler</title>
 
- 
+    <!-- Bootstrap CSS -->
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css'
+        integrity='sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS' crossorigin='anonymous'>
+    <link rel='stylesheet' href='style.css'>
+    <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'
+        integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo'
+        crossorigin='anonymous'></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <!-- LINK TO FIREBASE GOES HERE -->
-  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
-  <!-- moment js script -->
-  <script src = "https://cdn.jsdelivr.net/momentjs/2.18.1/moment.min.js"></script>
- 
-  <!--Necessary javascript for BootStrap-->
-  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
-  <script src = "https://code.jquery.com/jquery-3.3.1.js" integrity = "sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin = "anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <!--CSS Link-->
-  <link rel = "stylesheet" href = "style.css">
 </head>
 
-<!-- element IDs to use:: -->
-<!-- submit button: #addperson -->
-<!-- name input: #nameinput -->
-<!-- rate input: #rateinput -->
-<!-- start date input #dateinput -->
-
 <body>
-
-<div class="container">
-
-  <br>
-
-  <!-- Jumbotron -->
-  <!-- <div class="jumbotron"> -->
-    <div class = "jumbotron">
-    <h1 class="title"><strong>Trusty Tinas Train Tracker</strong></h1>
-    <br>
-    <p class="lead"><strong>Trusted Tremendous Train Tracking</strong></p>
-  </div>
-
-  <!--table-->
-  <!-- <div class="container main"> -->
-    <div class="table-responsive">
-    <table id = "train-table" class ='table table-striped'></table>
-      <thead>
-      <tr>
-        <th scope = "col"><strong>Train Name</strong></th>
-        <th scope = "col"><strong>Destination</strong></th>
-        <th scope = "col"><strong>Frequency</strong></th>
-        <th scope = "col"><strong>Distance</strong></th>  
-        <th scope = "col"><strong>Next Arrival</strong></th>  
-        </tr>
-      </thead>
-            <!-- <tbody id="train-data">
-            </tbody> -->
-    </table>
-    </div>
-
-    <br>
-
-    <div class="col-lg-6">
-      <div class="card card-default">
-        <div class="card-header">
-         <strong> New Train Sign Up</strong>
+    <div class="container bg-image">
+        <div class="row"></div>
+        <div class="col-md-12" id="title-row">
+            <div class="jumbotron">
+                <h1>Train Scheduler</h1>
+                <hr class="my-4">
+                <!-- <div class="clock">
+                    <div id="Date"></div>
+                    <ul>
+                        <li id="hours"></li>
+                        <li id="point">:</li>
+                        <li id="min"></li>
+                        <li id="point">:</li>
+                        <li id="sec"></li>
+                    </ul>
+                </div> -->
+            </div>
         </div>
-        <div class="card-body">
-  
-          <!-- Sign-up Form -->
-          <form role="form">
-            <div class="form-group row">
-              <label for="nameInput"><strong>Name:</strong></label>
-              <input class="form-control" id="nameInput" type="text">
-            </div>
-            <div class="form-group row">
-              <label for="destinationInput"><strong>Destination:</strong></label>
-              <input class="form-control" id="destinationInput" type="text">
-            </div>
-            <div class="form-group row">
-              <label for="arrivalInput"><strong>Arrival:</strong></label>
-              <input class="form-control" id="arrivalInput" type="number">
-            </div>
-            <div class="form-group row">
-              <label for="frequencyInput"><strong>Frequency:</strong></label>
-              <input class="form-control" id="frequencyInput" type="number">
-            </div>
-            <div class="form-group row">
-              <label for="distanceInput"><strong>Distance:</strong></label>
-              <input class="form-control" id="distanceInput" type="number">
-            </div>
-           
-            <button class="btn btn-default" id="addTrain" type="submit"><strong>Submit</strong></button>
-            
-          </form>
+        <div class="row"></div>
+        <div class="col" id="train-list">
+            <table id="train-table" class="table table-dark">
+                <thead class="thead-light">
+                    <p id="train-table-title">Trusted Train Scheduler:</p>
+                    <tr>
+                        <th scope="col">Train Name</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Next Arrival</th>
+                        <th scope="col">Frequency (min)</th>
+                        <th scope="col">Minutes Away</th>
+                    </tr>
+                </thead>
+            </table>
+
         </div>
-      </div>
-    </div>
-  </div>
-  </div>
+        <div class="row"></div>
+        <div class="col" id="trainForm">
+            <p id="train-form-title">Add a Train:</p>
+            <form class=form-group action="submit">
+                <div class="form-group">
+                    <label for="trainName">Train Name:</label>
+                    <input type="text" class="form-control form-control-sm" id="trainName">
+                </div>
+                <div class="form-group">
+                    <label for="trainDest">Destination:</label>
+                    <input type="text" class="form-control form-control-sm" id="trainDest">
+                </div>
+                <div class="form-group">
+                    <label for="trainFirst">First Train Time (HH:mm):</label>
+                    <input type="time" class="form-control form-control-sm" id="trainFirst">
+                </div>
+                <div class="form-group">
+                    <label for="trainFreq">Frequency (min):</label>
+                    <input type="number" class="form-control form-control-sm" id="trainFreq">
+                </div>
+                <button type="submit" class="btn btn-primary" id="click-button">Submit</button>
+
+            </form>
+        </div>
+        <!-- Optional JavaScript -->
 
 
-<script src='logic.js'></script>
+        <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
+        <script src='logic.js'></script>
 </body>
+
 </html>
+
 
 
 
