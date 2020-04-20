@@ -1,32 +1,68 @@
-table {
-    border: 1px solid black;
-    column-width: 200px;
+pwd@import url('https://fonts.googleapis.com/css?family=Inconsolata|Libre+Franklin|Nunito+Sans|Poppins|Taviraj|Zilla+Slab+Highlight');
+/*
+font-family: 'Zilla Slab Highlight', cursive;
+font-family: 'Libre Franklin', sans-serif;
+font-family: 'Taviraj', serif;
+font-family: 'Inconsolata', monospace;
+font-family: 'Nunito Sans', sans-serif;
+*/
+body, html{
+/*  background-image: url("assets/images/handsacrosstransit.jpg");
+*/  background-image: url("../images/line-circle.png");
+/*  background-repeat: repeat-y;
+*/}
+.content {
+  background-color: rgba(255, 255, 255, .3);
+  padding: 15px;
 }
-table td {
-    border-left: 1px solid black;
-    width: 200px;
+.panel-header {
+  color: black;
 }
-table tr {
-    border-bottom: 1px solid black;
-}
+.main {
+  background-color: rgba(255, 255, 255, .6);
 
-.jumbotron{
-    background-color: black;
-    color:white;
-    font-style: bold;
 }
-    
-.card-body{
-    border:2px solid black;
-    }
-
-#addPerson{
-    border:2px solid black;  
-    }
-.card-header{
-    border:2px solid black;
+h1.title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  font-size: 65pt;
 }
+.jumbotron {
+  border: 4px dotted color: rgba(0, 0, 0, .6);
+  background-color: rgba(255, 255, 255, .3);
+  margin: 20px;
+  padding: 20px;
+}
+th {
+  font-size: 13px;
+  text-transform: uppercase;
+  background-color: rgba(255, 255, 255, .6);
+}
+td {
+  font-size: 15px;
+  background-color: rgba(255, 255, 255, .8);
+  font-family: 'Inconsolata', monospace;
+}
+h3{
+  font-size: 40px;
 
-.table-responsive{
-    border:2px solid black;
+}
+h5 {
+  font-family: 'Inconsolata', monospace;
+  text-transform: uppercase;
+}
+.fader{
+  color: rgba(0,0,0, .5);
+}
+.fadest{
+  color: rgba(0,0,0, .2);
+}
+.timeCurrent {
+  font-family: 'Inconsolata', monospace;
+  font-size: 24px;
+  color:black;
+}
+.trainForm{
+  background-color: rgba(285, 265, 285, .8);
+
 }

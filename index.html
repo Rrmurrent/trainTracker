@@ -1,91 +1,78 @@
-<html lang='en'>
-
+<!DOCTYPE html>
+<html lang="en-us">
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <META HTTP-EQUIV="refresh" CONTENT="60">
+  <!--<link href="assets/css/reset.css" rel="stylesheet">   1. reset stylesheet (Meyer, E.)-->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">  
+  <script src="logic.js" rel="text/javascript"></script>
 
-    <title>Train Scheduler</title>
-
-    <!-- Bootstrap CSS -->
-    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css'
-        integrity='sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS' crossorigin='anonymous'>
-    <link rel='stylesheet' href='style.css'>
-    <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'
-        integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo'
-        crossorigin='anonymous'></script>
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-
-</head>
-
+  <title>Train Track</title>
 <body>
-    <div class="container bg-image">
-        <div class="row"></div>
-        <div class="col-md-12" id="title-row">
-            <div class="jumbotron">
-                <h1>Train Scheduler</h1>
-                <hr class="my-4">
-                <!-- <div class="clock">
-                    <div id="Date"></div>
-                    <ul>
-                        <li id="hours"></li>
-                        <li id="point">:</li>
-                        <li id="min"></li>
-                        <li id="point">:</li>
-                        <li id="sec"></li>
-                    </ul>
-                </div> -->
+<!--   <div class="container-fluid">
+ -->       <div class="container main">
+<!--        <div class="row ">
+ --><!--         <div class="col-sm-2"></div>
+ -->        <div class=" well-sm jumbotron text-center">
+          <h1 class="title">Train Tracker</h1>
+          <hr>
+          <h5 class="timeCurrent text-center"></h5>
+    </div>
+<!--       <div class="col-sm-2"></div></div>-->
+      <div class="row ">
+        <div class="col-sm-1"></div>
+          <div class=" col-sm-3 sidenav alert  trainForm well-sm">
+            <h3 class="alert-header text-left">Add Train</h3>
+          
+          <form role="form">
+            <div class="form-group ">
+              <label for="trainNameId" >Train Name:</label> <input class="form-control " id="trainNameId" onfocus="this.value=' '" type="text">
+            </div><br>
+            <div class="form-group ">
+              <label for="destinationId" >Destination:</label><input class="form-control" id="destinationId" onfocus="this.value=' '" type="text">
+            </div><br>        
+            <div class=" form-group firstTrainTimeId ">
+              <label for="start-date-input">First Train Time:</label> 
+              <input class="form-control" id="firstTrainTimeId" onfocus="this.value=' '" placeholder="24:00 format (HH:mm)" type="text">
+            </div><br>
+            <div class="form-group ">
+              <label for="frequencyId">Frequency (min)</label> <input class="form-control" id="frequencyId" onfocus="this.value=' '" placeholder="minutes" type="text">
             </div>
+            <div class="form-group ">
+            <button class="btn btn-primary btn-sm" id="submit" type="submit">Submit</button></div>
+          </form>
         </div>
-        <div class="row"></div>
-        <div class="col" id="train-list">
-            <table id="train-table" class="table table-dark">
-                <thead class="thead-light">
-                    <p id="train-table-title">Trusted Train Scheduler:</p>
-                    <tr>
-                        <th scope="col">Train Name</th>
-                        <th scope="col">Destination</th>
-                        <th scope="col">Next Arrival</th>
-                        <th scope="col">Frequency (min)</th>
-                        <th scope="col">Minutes Away</th>
-                    </tr>
-                </thead>
-            </table>
-
+        <div class=" col-sm-7 alert  trainSchedule well-sm">
+          <h3 class="text-right">Rail Schedule</h3>
+<hr>        <table class="table">
+          <thead>
+            <tr>
+              <th>Train Name</th>
+              <th>Destination</th>
+              <th>Frequency</th>
+              <th>Next Arrival</th>
+              <th>Minutes Away</th>
+            </tr>
+          </thead>
+          <tbody id="train-data">
+          </tbody>
+        </table>
         </div>
-        <div class="row"></div>
-        <div class="col" id="trainForm">
-            <p id="train-form-title">Add a Train:</p>
-            <form class=form-group action="submit">
-                <div class="form-group">
-                    <label for="trainName">Train Name:</label>
-                    <input type="text" class="form-control form-control-sm" id="trainName">
-                </div>
-                <div class="form-group">
-                    <label for="trainDest">Destination:</label>
-                    <input type="text" class="form-control form-control-sm" id="trainDest">
-                </div>
-                <div class="form-group">
-                    <label for="trainFirst">First Train Time (HH:mm):</label>
-                    <input type="time" class="form-control form-control-sm" id="trainFirst">
-                </div>
-                <div class="form-group">
-                    <label for="trainFreq">Frequency (min):</label>
-                    <input type="number" class="form-control form-control-sm" id="trainFreq">
-                </div>
-                <button type="submit" class="btn btn-primary" id="click-button">Submit</button>
+        <div class="col-sm-1"></div>
 
-            </form>
-        </div>
-        <!-- Optional JavaScript -->
-
-
-        <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
-        <script src='logic.js'></script>
+    </div><!-- submain container close -->
+</div> <!-- main container close -->  
+<!-- jQuery -->.
 </body>
-
 </html>
 
 
+<script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+<script src = "https://code.jquery.com/jquery.js"> </script> 
+<script src = "https://cdn.jsdelivr.net/momentjs/2.18.1/moment.min.js"></script>
+<script src="logic.js" rel="text/javascript"></script>
 
-
+</body>
+</html>

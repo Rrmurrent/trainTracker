@@ -1,0 +1,29 @@
+{
+  "name": "traintracker",
+  "version": "1.0.0",
+  "description": "log train scheudles",
+  "main": "logic.js",
+  "dependencies": {
+    "dotenv": "^7.0.0",
+    "moment": "^2.24.0",
+    "timestamp": "0.0.1",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rrmurrent/trainTracker.git"
+  },
+  "keywords": [
+    "train"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rrmurrent/trainTracker/issues"
+  },
+  "homepage": "https://github.com/Rrmurrent/trainTracker#readme"
+}
